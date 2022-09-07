@@ -1,0 +1,45 @@
+{% extends 'basic.html' %}
+
+
+
+{% block title %} Search Results {% endblock title %}
+{% comment %} {% block blogactive %} active {% endblock blogactive %} {% endcomment %}
+
+
+{% block body %}
+<div class="container my-3">
+    <h2>Search results : </h2>
+    {% if allPosts|length < 1 %} <p>No search results</p>
+        Your search query : <b>{{query}}</b> did not match any documents. <br>
+        Suggestions:
+        <ul>
+            <li>Make sure that all words are spelled correctly.</li>
+            <li>Try more general keywords.</li>
+            <li> Try fewer keywords.</li>
+            <li> Try different keywords.</li>
+            </li>
+        </ul>
+
+
+        {% endif %}
+        {% for product in allPosts %}
+        <div
+            class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 my-4 position-relative">
+            <div class="col p-4 d-flex flex-column position-static">
+                <strong class="d-inline-block mb-2 text-primary"> {{product.product_name}}</strong>
+
+                <div> <strong class="d-inline-block mb-2 text-primary"> {{product.desc}}</strong></div>
+                {% comment %} <p class="card-text mb-auto"> <a class="text-dark"
+                        href="/blog/{{post.slug}}">{{post.content|safe| truncatechars:500}}></a></p> {% endcomment %}
+
+                
+                    <img src='/media/{{product.image}}' class="card-img-top" alt="..." style="width: 13rem;"></img>
+                
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+</div>
+{% endblock %}
